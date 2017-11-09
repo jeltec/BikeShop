@@ -36,7 +36,40 @@ describe('Bikes', function (){
                     expect(result).to.include( { id: 1000001, year: 1999  } );
                     done();
                 });
-            
+
+        });
+    });
+    describe('POST /bikes', function () {
+        it('should return confirmation message and update database', function(done) {
+            var bike = {
+                year: 2008,
+                type: 'Test bike',
+                brand: 'Minerva',
+                users: 0,
+                gender: 'V'};
+            chai.request(server)
+                .post('/bikes')
+                .send(bike)
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.have.property('message').equal('Bike Added!' ) ;
+                    done();
+                });
+            after(function (done) {
+                chai.request(server)
+                    .get('/bikes')
+                    .end(function(err, res) {
+                        var result = _.map(res.body, function (bike) {
+                            return {
+                                year: bike.year
+                            };
+                        } );
+                        expect(result).to.include( {
+                            year: 2008
+                        } ); done();
+                    });
+            });
+
         });
     });
 
