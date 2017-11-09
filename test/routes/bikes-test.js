@@ -95,5 +95,39 @@ describe('Bikes', function (){
                 });
         });
     });
-
+    describe('DELETE /bikes/:id', function(){
+        it('should not return the deleted bike', function(done) {
+            chai.request(server)
+                .delete('/bikes/1000001')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(200);
+                    done();
+                });
+            after(function (done) {
+                chai.request(server) .get('/bikes')
+                    .end(function(err, res) {
+                        var result = _.map(res.body, function (bike) {
+                            return {
+                                id: bike.id, year: bike.year
+                            };
+                        } );
+                        chai.expect(result).to.not.include( {
+                            id:1000001 , year: 1999
+                        } );
+                        chai.expect(result).to.include( {
+                            id: 1000000, year: 2002
+                        } );done();
+                    });
+            });
+        });
+        it('should return a 404 status and message for invalid bike id', function(done) {
+            chai.request(server)
+                .delete('/bikes/1100001')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(404);
+                    chai.expect(res.body).to.have.property('message').equal('Invalid Bike Id!' ) ;
+                    done();
+                });
+        });
+    });
 });

@@ -29,9 +29,15 @@ router.addBike = function(req, res) {
 router.deleteBike = function(req, res) {
     //Delete the selected donation based on its id
     var bike = getByValue(bikes,req.params.id);
-    var index = bikes.indexOf(bike);
-    bikes.splice(index, 1);  
-    router.findAll(req,res);
+    if(bike){
+        var index = bikes.indexOf(bike);
+        bikes.splice(index, 1);
+        router.findAll(req,res);
+    }else{
+        res.status(404);
+        res.json({message: 'Invalid Bike Id!'});
+    }
+
 };
 
 router.incrementUsers = function(req, res) {
