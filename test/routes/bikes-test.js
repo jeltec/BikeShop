@@ -1,8 +1,6 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../../bin/www');
-var expect = chai.expect;
-
 chai.use(chaiHttp);
 var _ = require('lodash' );
 chai.use(require('chai-things'));
@@ -25,15 +23,15 @@ describe('Bikes', function (){
             chai.request(server)
                 .get('/bikes')
                 .end(function(err, res) {
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.be.a('array');
-                    expect(res.body.length).to.equal(2);
+                    chai.expect(res).to.have.status(200);
+                    chai.expect(res.body).to.be.a('array');
+                    chai.expect(res.body.length).to.equal(2);
                     var result = _.map(res.body, function (bike) {
                         return { id: bike.id,
                             year: bike.year };
                     });
-                    expect(result).to.include( { id: 1000000, year: 2002  } );
-                    expect(result).to.include( { id: 1000001, year: 1999  } );
+                    chai.expect(result).to.include( { id: 1000000, year: 2002  } );
+                    chai.expect(result).to.include( { id: 1000001, year: 1999  } );
                     done();
                 });
 
@@ -51,8 +49,8 @@ describe('Bikes', function (){
                 .post('/bikes')
                 .send(bike)
                 .end(function(err, res) {
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.have.property('message').equal('Bike Added!' ) ;
+                    chai.expect(res).to.have.status(200);
+                    chai.expect(res.body).to.have.property('message').equal('Bike Added!' ) ;
                     done();
                 });
             after(function (done) {
@@ -64,12 +62,37 @@ describe('Bikes', function (){
                                 year: bike.year
                             };
                         } );
-                        expect(result).to.include( {
+                        chai.expect(result).to.include( {
                             year: 2008
-                        } ); done();
+                        } );
+                        done();
                     });
             });
-
+        });
+    });
+    describe('PUT /bikes/:id/users', function () {
+        it('should return all bikes with users of specified bike incremented', function(done) {
+            chai.request(server)
+                .put('/bikes/1000001/users')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(200);
+                    chai.expect(res.body).be.be.a('array');
+                    var result = _.map(res.body, function (bike) {
+                        return { id: bike.id,
+                            users: bike.users };
+                    }  );
+                    chai.expect(result).to.include( { id: 1000001, users: 2  } );
+                    done();
+                });
+        });
+        it('should return a 404 status and message for invalid bike id', function(done) {
+            chai.request(server)
+                .put('/bikes/1100001/users')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(404);
+                    chai.expect(res.body).to.have.property('message').equal('Invalid Bike Id!' ) ;
+                    done();
+                });
         });
     });
 

@@ -38,7 +38,7 @@ router.incrementUsers = function(req, res) {
     //Add 1 to upvotes property of the selected donation based on its id
     var bike = getByValue(bikes,req.params.id);
     if (bike) {
-        bike.upvotes += 1;
+        bike.users += 1;
         router.findAll(req,res); 
     } else {
         res.status(404);
