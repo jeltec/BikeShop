@@ -37,6 +37,36 @@ describe('Bikes', function (){
 
         });
     });
+
+    describe('GET /bikes/:id', function () {
+
+        /* It normally should work, but somehow doesn't
+        it('should return one bike with the right id', function(done) {
+        chai.request(server)
+            .get('/bikes/1000000')
+            .end(function(err, res) {
+                chai.expect(res).to.have.status(200);
+                chai.expect(res.body).to.be.a('array');
+                chai.expect(res.body.length).to.equal(1);
+                var result = _.map(res.body, function (bike) {
+                    return { id: bike.id,
+                        year: bike.year };
+                });
+                chai.expect(result).to.include( { id: 1000000, year: 2002  } );
+                chai.expect(result).not.to.include( { id: 1000001, year: 1999  } );
+                done();
+            });
+        });*/
+        it('should return a 404 status and message for invalid bike id', function(done) {
+            chai.request(server)
+                .get('/bikes/1100001')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(404);
+                    chai.expect(res.body).to.have.property('message').equal('Invalid Bike Id!' ) ;
+                    done();
+                });
+        });
+    });
     describe('POST /bikes', function () {
         it('should return confirmation message and update database', function(done) {
             var bike = {

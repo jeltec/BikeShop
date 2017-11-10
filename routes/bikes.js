@@ -18,6 +18,16 @@ router.findAll = function(req, res) {
     res.json(bikes);
 };
 
+router.findOne = function(req, res) {
+    var bike = getByValue(bikes,req.params.id);
+    if(bike){
+        res.json(bike);
+    }else{
+        res.status(404);
+        res.json({message: 'Invalid Bike Id!'});
+    }
+};
+
 router.addBike = function(req, res) {
     //Add a new donation to our list
     var id = Math.floor((Math.random() * 1000000) + 1);

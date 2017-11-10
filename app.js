@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 app.get('/bikes', bikes.findAll);
+app.get('/bikes/:id', bikes.findOne);
 app.post('/bikes', bikes.addBike);
 app.put('/bikes/:id/users', bikes.incrementUsers);
 app.delete('/bikes/:id', bikes.deleteBike);
