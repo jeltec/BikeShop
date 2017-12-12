@@ -5,7 +5,7 @@ require('./controllers/index');
 require('../../node_modules/bootstrap/dist/css/bootstrap.css' );
 require('../../node_modules/font-awesome/css/font-awesome.css' );
 require('../stylesheets/style.css');
-app.config(function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     // route for the home page
         .when('/', {
@@ -32,5 +32,5 @@ app.config(function($routeProvider) {
             templateUrl : 'public/pages/contact.ejs',
             controller  : 'contactController'
         });
-});
+}]);
 
