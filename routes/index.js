@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off" */
 var express = require('express');
 var router = express.Router();
 

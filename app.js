@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off" */
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -64,7 +65,7 @@ app.use(function(err, req, res, next) {
 });
 
 if (process.env.NODE_ENV !== 'test') {  
-        app.use(logger('dev'));
-    }
+    app.use(logger('dev'));
+}
 
 module.exports = app;

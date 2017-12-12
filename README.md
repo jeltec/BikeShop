@@ -1,3 +1,4 @@
+/* eslint-disable */
 # Assignment 1 - API testing and Source Control.
 
 Name: Jelte Crabbé

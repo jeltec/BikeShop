@@ -1,5 +1,5 @@
-var bikes = require('../models/bikes');
-
+var Bike = require('../models/bikes');
+//var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
@@ -15,33 +15,34 @@ router.home = function(req, res) {
 
 router.findAll = function(req, res) {
     // Return a JSON representation of our list
-    res.json(bikes);
+    res.json(Bike);
 };
 
 router.findOne = function(req, res) {
-    var bike = getByValue(bikes,req.params.id);
-    if(bike){
+    var bike = getByValue(Bike,req.params.id);
+    /*if(bike){
         res.json(bike);
     }else{
+    */    
         res.status(404);
         res.json({message: 'Invalid Bike Id!'});
-    }
+    //}
 };
 
 router.addBike = function(req, res) {
     //Add a new donation to our list
     var id = Math.floor((Math.random() * 1000000) + 1);
-    bikes.push({id : id, year: req.body.year,
+    Bike.push({id : id, year: req.body.year,
         type: req.body.type, brand: req.body.brand, user: req.body.user, gender: req.body.gender});
     res.json({ message: 'Bike Added!'});
 };
  
 router.deleteBike = function(req, res) {
     //Delete the selected donation based on its id
-    var bike = getByValue(bikes,req.params.id);
+    var bike = getByValue(Bike,req.params.id);
     if(bike){
-        var index = bikes.indexOf(bike);
-        bikes.splice(index, 1);
+        var index = Bike.indexOf(bike);
+        Bike.splice(index, 1);
         router.findAll(req,res);
     }else{
         res.status(404);
@@ -52,7 +53,7 @@ router.deleteBike = function(req, res) {
 
 router.incrementUsers = function(req, res) {
     //Add 1 to upvotes property of the selected donation based on its id
-    var bike = getByValue(bikes,req.params.id);
+    var bike = getByValue(Bike,req.params.id);
     if (bike) {
         bike.users += 1;
         router.findAll(req,res); 
@@ -61,5 +62,14 @@ router.incrementUsers = function(req, res) {
         res.json({ message: 'Invalid Bike Id!'});
     }     
 };
+/*mongoose.connect('mongodb://localhost:27017/bikedb');
 
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+    console.log('connection error', err);
+});
+db.once('open', function () {
+    console.log('connected to database');
+});*/
 module.exports = router;

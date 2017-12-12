@@ -6,7 +6,7 @@ app.controller('donateController', ['$scope', '$location', '$http', function($sc
 
     $scope.message = 'Donate Page!';
     $scope.amount = 1000;
-    $scope.options = [{ name: "PayPal", id: 0 }, { name: "Direct", id: 1 }];
+    $scope.options = [{ name: 'PayPal', id: 0 }, { name: 'Direct', id: 1 }];
     $scope.formData.paymentOptions = $scope.options[0];
 
     //Reset our formData fields
@@ -15,8 +15,8 @@ app.controller('donateController', ['$scope', '$location', '$http', function($sc
     $scope.formData.upvotes = 0;
 
     $scope.addDonation = function(){
-      $scope.formData.paymenttype = $scope.formData.paymentOptions.name;
-       $http.post('/donations', $scope.formData)
+        $scope.formData.paymenttype = $scope.formData.paymentOptions.name;
+        $http.post('/donations', $scope.formData)
             .success(function(data) {
                 $scope.donations = data;
                 $location.path('/donations');
@@ -24,8 +24,8 @@ app.controller('donateController', ['$scope', '$location', '$http', function($sc
             })
             .error(function(data) {
                 console.log('Error: ' + data);
-              });
-            };
-  }
+            });
+    };
+}
 
-  ]);
+]);

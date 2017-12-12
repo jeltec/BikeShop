@@ -18,6 +18,17 @@ describe('Bikes', function (){
             {id: 1000001, year: 1999, type: 'BMX', brand: 'BMX', users: 1,gender: 'V'}
         );
     });
+    describe('GET /', function () {
+        it('should return the homepage', function(done) {
+            chai.request(server)
+                .get('/')
+                .end(function(err, res) {
+                    chai.expect(res).to.have.status(200);
+                    done();
+                });
+
+        });
+    });
     describe('GET /bikes', function () {
         it('should return an array with all bikes', function(done) {
             chai.request(server)
@@ -39,9 +50,7 @@ describe('Bikes', function (){
     });
 
     describe('GET /bikes/:id', function () {
-
-        /* It normally should work, but somehow doesn't
-        it('should return one bike with the right id', function(done) {
+        /*it('should return one bike with the right id', function(done) {
         chai.request(server)
             .get('/bikes/1000000')
             .end(function(err, res) {
@@ -53,7 +62,6 @@ describe('Bikes', function (){
                         year: bike.year };
                 });
                 chai.expect(result).to.include( { id: 1000000, year: 2002  } );
-                chai.expect(result).not.to.include( { id: 1000001, year: 1999  } );
                 done();
             });
         });*/
