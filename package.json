@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-        "api:dev": "npm-run-all --parallel lint:watch test:watch server",
+    "api:dev": "npm-run-all --parallel lint:watch test:watch server",
     "start": "npm-run-all --parallel lint:watch test:watch build:dev",
     "build:prod": "npm-run-all clean-dist webpack --config webpack-prod.config.js",
     "test:watch": "npm run test -- --watch",     
@@ -15,7 +15,7 @@
     "clean-build": "rimraf ./build && mkdir build",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "lint": "esw ./public/javascript/**/*.js ./test ./routes ./models/",
-    "test": "cross-env NODE_ENV=test PORT=4000 mocha test/routes/donations-test.js", 
+    "test": "cross-env NODE_ENV=test PORT=4000 mocha test/routes/bikes-test.js", 
     "server": "nodemon bin/www"
   },
   "dependencies": {
