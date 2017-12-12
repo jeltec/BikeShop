@@ -1,6 +1,4 @@
-var app = angular.module('DonationWebApp');
-
-app.controller('donateController', ['$scope', '$location', '$http', function($scope, $location, $http) {
+function donateController($scope, $location, $http) {
     
     $scope.formData = {};
 
@@ -28,4 +26,4 @@ app.controller('donateController', ['$scope', '$location', '$http', function($sc
     };
 }
 
-]);
+module.exports = donateController;
