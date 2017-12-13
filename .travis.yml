@@ -4,12 +4,11 @@ language: node_js
   script:
  - npm run coverage
  branches:
- branches:
    only:
    - development
   notifications:
     email:
       recipients:
-        - jeltecrabbe@gmail.com      # uae your own
+        - jeltecrabbe@gmail.com
       on_success: never        # default: change
       on_failure: always       # default: always
