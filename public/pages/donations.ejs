@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" id="donations">
 	<h1>List All Donations</h1>
 	
 	<p>{{ message }}</p>
@@ -11,26 +11,27 @@
             <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(donation.id)"></span>
               {{donation.upvotes}}
              </td>
-             <td> 
+
+          <td> 
              <span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{donation.paymenttype}}</span>
          	</td>
-             <td>
+
+          <td name="amount">
             <span class="glyphicon glyphicon-euro"></span> 
             {{donation.amount}}  
-    		</td>
- 			<td>
-      
-      <span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>
-
-      
-      <button type="button" class="btn btn-default" ng-click="delete(donation.id)">
-          <span class="glyphicon glyphicon-remove"></span> Remove 
-        </button>
-        <button type="button" class="btn btn-default" ng-click="update(donation)">
-          <span class="glyphicon glyphicon-edit"></span> Edit 
-        </button>
-        </span>    
+    		  </td>
+ 			
+          <td>
+             <span style="height:55px; font-size:20px; margin-left:20px;   margin-right:20px; valign="middle";>  
+               <button type="button" class="btn btn-default" ng-click="delete(donation.id)">
+                   <span class="glyphicon glyphicon-remove"></span> Remove 
+                </button>
+                <button type="button" class="btn btn-default" ng-click="update(donation)">
+                   <span class="glyphicon glyphicon-edit"></span> Edit 
+                </button>
+             </span>    
              </td>
+
     	</tr>
       </tbody>
     </table> 
