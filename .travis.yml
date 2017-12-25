@@ -1,14 +1,14 @@
 language: node_js
- node_js:
- - stable
- script:
- - npm run coverage
- branches:
-  only:
-  - development
- notifications:
-  email:
-   recipients:
-   - jeltecrabbe@gmail.com
-   on_success: never        # default: change
-   on_failure: always       # default: always
+node_js:
+- stable
+script:
+- npm run coverage
+branches:
+ only:
+ - development
+notifications:
+ email:
+  recipients:
+  - jeltecrabbe@gmail.com
+  on_success: never        # default: change
+  on_failure: always       # default: always
