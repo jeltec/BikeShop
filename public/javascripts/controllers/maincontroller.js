@@ -1,6 +1,6 @@
 function mainController($scope) {
     // create a message to display in our view
-    $scope.message = 'Homer for President!!';
+    $scope.message = 'Welcome to Rebike!!';
 }
 
 module.exports = mainController;

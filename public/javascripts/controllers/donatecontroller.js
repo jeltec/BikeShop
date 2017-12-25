@@ -2,21 +2,25 @@ function donateController($scope, $location, $http) {
     
     $scope.formData = {};
 
-    $scope.message = 'Donate Page!';
-    $scope.amount = 1000;
-    $scope.options = [{ name: 'PayPal', id: 0 }, { name: 'Direct', id: 1 }];
-    $scope.formData.paymentOptions = $scope.options[0];
+    $scope.message = 'Donate a bike!';
+    $scope.year = 2017;
+    $scope.brand = '';
+    $scope.goptions = [{name:'M', id:0},{name:'V',id:1}];
+    $scope.formData.genderOptions = $scope.goptions[0];
+    $scope.toptions = [{ name: 'Road bike', id: 0 }, { name: 'BMX', id: 1 }, { name: 'City bike', id: 2 },{ name: 'Mountain bike', id: 3 }];
+    $scope.formData.bikeOptions = $scope.toptions[0];
 
     //Reset our formData fields
-    $scope.formData.paymenttype = 'PayPal';
-    $scope.formData.amount = 1000;
-    $scope.formData.upvotes = 0;
+    $scope.formData.year = 2017;
+    $scope.formData.brand='';
+    $scope.formData.users = 0;
 
-    $scope.addDonation = function(){
-        $scope.formData.paymenttype = $scope.formData.paymentOptions.name;
-        $http.post('/donations', $scope.formData)
+    $scope.addBike = function(){
+        $scope.formData.type = $scope.formData.bikeOptions.name;
+        $scope.formData.gender = $scope.formData.genderOptions.name;
+        $http.post('/bikes', $scope.formData)
             .success(function(data) {
-                $scope.donations = data;
+                $scope.bikes = data;
                 $location.path('/donations');
                 console.log(data);
             })

@@ -31,6 +31,10 @@ app.config(['$routeProvider', function($routeProvider) {
         .when('/contact', {
             templateUrl : 'public/pages/contact.ejs',
             controller  : 'contactController'
+        })
+        .when('/rebike', {
+            templateUrl : 'public/pages/rebike.ejs',
+            controller  : 'rebikeController'
         });
 }]);
 

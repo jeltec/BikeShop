@@ -11,20 +11,20 @@ var mochaTimeOut = 30000;
 var pageSelector ;
 var navBarSelector ;
 
-test.describe('Home page', function() {
+test.describe('Rebike page', function() {
     this.timeout(mochaTimeOut);
     test.before( function() {
         driver = new webdriver.Builder()
             .withCapabilities( webdriver.Capabilities.chrome() )
             .build();
-        pageSelector = By.id('home');
+        pageSelector = By.id('rebike');
         navBarSelector = By.tagName('nav');
     } );
     test.beforeEach( function() {
         driver.get('http://localhost:3000');
         driver.wait(until.elementLocated(pageSelector), 2000);
     } );
-    test.it('shows the main body', function() {   
+    test.it('shows the main body', function() {
         driver.findElement(pageSelector)
             .then(function(element) {
                 expect(element).to.not.equal(null );
@@ -50,12 +50,19 @@ test.describe('Home page', function() {
         });
     } );
 
-    test.it( 'shows the main image', function() {
-        driver.findElement(By.tagName('img')).then(function(element) {
-            element.getAttribute('src').then(function(text) {
-                expect(text).to.equal(
-                    'http://localhost:3000/public/images/homer.gif');
-            } );  
+    test.it( 'read more button redirects to about page', function() {
+        driver.findElement(By.className('btn btn-danger')).then(function(element) {
+            expect(element).to.not.equal(null );
+            element.getText().then(function(text) {
+                expect(text).to.equal('Read More');
+                element.click();
+            } )
+            driver.findElement(By.tagName('h1')).then(function(element) {
+                element.getText().then(function(text) {
+                    expect(text).to.equal(
+                        'About Us');
+                } );
+            });
         });
     } );
     test.after(function() {

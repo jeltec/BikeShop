@@ -38,7 +38,7 @@ test.describe('Donate page', function() {
     } );
 
 
-    test.it( 'accepts donation and displays in list', function() {
+    test.it( 'accepts donation and displays bikes in list', function() {
         var select = driver.findElement(By.tagName('select'));
         select.then( function( element ) {
             return element.findElements(By.tagName('option'));
@@ -54,7 +54,7 @@ test.describe('Donate page', function() {
                 return element;
             } )            
             .then(function(element) {
-                element.sendKeys('2000');
+                element.sendKeys('MinBRAND');
             } )
             .then(function() {
                 return driver.findElement(By.id('submit'));
@@ -66,18 +66,18 @@ test.describe('Donate page', function() {
                 driver.wait(until.elementLocated(By.id('donations')), 20000);
                 return driver.findElements(By.tagName('tr'));
             })
-            .then( function( donations ) {
-                expect(donations.length).to.equal(noDonations + 1) ;
-                return donations;
+            .then( function( bikes ) {
+                expect(bikes.length).to.equal(noDonations + 1) ;
+                return bikes;
             })
-            .then( function( donations ) {
-                return donations[noDonations].findElement(By.name('amount'));
+            .then( function( bikes ) {
+                return bikes[noDonations].findElement(By.name('brand'));
             })
             .then(function(element) {
                 return element.getText();
             })
             .then(function(text) {
-                expect(text).to.equal('2000');
+                expect(text).to.equal('MinBRAND');
             } );
     } );
 

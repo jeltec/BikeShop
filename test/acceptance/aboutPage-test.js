@@ -50,7 +50,7 @@ test.describe('About page', function() {
         });
     } );
 
-    test.it( 'shows the main image', function() {
+    test.it( 'shows the main title', function() {
         driver.findElement(By.tagName('h1')).then(function(element) {
             element.getText().then(function(text) {
                 expect(text).to.equal(

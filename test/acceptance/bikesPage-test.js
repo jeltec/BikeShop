@@ -26,34 +26,39 @@ test.describe('Donations page', function() {
     test.it( 'shows the main header', function() {
         driver.findElement(By.tagName('h1')).then( function( element ) {
             element.getText().then(function(text) {
-                expect(text).to.equal('List All Donations');
+                expect(text).to.equal('All bikes available');
+            });
+        });
+    } );
+    test.it( 'shows the title', function() {
+        driver.findElement(By.tagName('p')).then( function( element ) {
+            element.getText().then(function(text) {
+                expect(text).to.equal('Look for a bike!');
             });
         });
     } );
 
-    test.it( 'displays the donations', function() {
-        var donations = driver.findElements(By.tagName('tr'));
-        // 1st donation amount should be 1100
-        donations
+    test.it( 'displays the bikes', function() {
+        var bikes = driver.findElements(By.tagName('tr'));
+        bikes
             .then(function( elements ) {
-                return elements[0].findElement(By.name('amount'));
+                return elements[0].findElement(By.name('gender'));
             })
             .then(function(element) {
                 return element.getText();
             })
             .then(function(text) {
-                expect(text).to.equal('1100');
+                expect(text).to.equal('M');
             } );
-        // 2nd donation amount should be 1600
-        donations
+        bikes
             .then( function( elements ) {
-                return elements[1].findElement(By.name('amount'));
+                return elements[1].findElement(By.name('gender'));
             })
             .then(function(element) {
                 return element.getText();
             })
             .then(function(text) {
-                expect(text).to.equal('1600');
+                expect(text).to.equal('V');
             } );           
     } );
 

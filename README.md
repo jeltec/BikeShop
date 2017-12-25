@@ -22,16 +22,15 @@ run : npm run server
 ## Acceptance Testing.
 
 Homepage
-$         
      > BikeShop@0.0.0 acctest /Users/jelte/Desktop/BikeShop
      > cross-env NODE_ENV=test PORT=4000 mocha test/acceptance/
-
+     $ 
   Home page
     ✓ shows the main body
     ✓ shows the nav bar
     ✓ shows the buttons (131ms)
     ✓ shows the main image
-$
+    $
 
 Donate
 $         

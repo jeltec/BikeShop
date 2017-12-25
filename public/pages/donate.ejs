@@ -7,19 +7,32 @@
 	<div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-      <form ng-submit="addDonation()"
+      <form ng-submit="addBike()"
         style="margin-top:30px;">
         <h3>Add a new Donation</h3>
-
+        <div align="center">
+          <input type="string"
+                 class="form-control"
+                 placeholder="Brand"
+                 ng-model="formData.brand"
+                 ng-style="{'width': 100 + 'px'}"></input>
+        </div>
+        <h5>Type:</h5>
         <div class="form-group" align="center">
-          <select ng-model="formData.paymentOptions" class="form-control" ng-show="formData.paymentOptions" ng-options="option.name for option in options" ng-style="{'width': 100 + 'px'}">
+          <select ng-model="formData.bikeOptions" class="form-control" ng-show="formData.bikeOptions" ng-options="option.name for option in toptions" ng-style="{'width': 100 + 'px'}">
           </select>
         </div>
+        <h5>Gender:</h5>
+        <div class="form-group" align="center">
+          <select ng-model="formData.genderOptions" class="form-control" ng-show="formData.genderOptions" ng-options="option.name for option in goptions" ng-style="{'width': 100 + 'px'}">
+          </select>
+        </div>
+        <h5>Year of origin:</h5>
         <div class="form-group" align="center">
           <input type="number"
           class="form-control"
-          placeholder="Amount"
-          ng-model="formData.amount"
+          placeholder="Year"
+          ng-model="formData.year"
           ng-style="{'width': 100 + 'px'}"></input>
         </div>
         <button type="submit" class="btn btn-primary" id="submit">Donate</button>

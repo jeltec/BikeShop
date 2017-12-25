@@ -33,7 +33,7 @@ router.addBike = function(req, res) {
     //Add a new donation to our list
     var id = Math.floor((Math.random() * 1000000) + 1);
     Bike.push({id : id, year: req.body.year,
-        type: req.body.type, brand: req.body.brand, user: req.body.user, gender: req.body.gender});
+        type: req.body.type, brand: req.body.brand, users: req.body.users, gender: req.body.gender});
     res.json({ message: 'Bike Added!'});
 };
  
