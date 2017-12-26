@@ -13,59 +13,59 @@ Bikeshop is a charity in which people can rent or buy a bike and donate it back 
 build : npm run build:dev
 
 acceptance test : 
-          terminal 1 : npm run server
-          terminal 2 : npm run acctest
+          mocha test/acceptance
 
-run : npm run server
+
           
 
 ## Acceptance Testing.
 
-Homepage
-     > BikeShop@0.0.0 acctest /Users/jelte/Desktop/BikeShop
-     > cross-env NODE_ENV=test PORT=4000 mocha test/acceptance/
-     $ 
-  Home page
-    ✓ shows the main body
-    ✓ shows the nav bar
-    ✓ shows the buttons (131ms)
-    ✓ shows the main image
-    $
+MacBook-Pro-Jelte:BikeShop jelte$ mocha test/acceptance
 
-Donate
-$         
-  Donate page
-    ✓ shows the main header (38ms)
-    1) accepts donation and displays in list
-    2) "after each" hook: ret for "accepts donation and displays in list"
-$
-
-View All Donations
-$         
-  Donations page
-    ✓ shows the main header
-    3) displays the donations
-$
-
-About 
 $
   About page
     ✓ shows the main body
-    ✓ shows the nav bar
-    ✓ shows the buttons (43ms)
-    ✓ shows the main image
-$
+    ✓ shows the nav bar (77ms)
+    ✓ shows the buttons (50ms)
+    ✓ shows the main title
 
-Contact
-$
+  Donations page
+    ✓ shows the main header
+    ✓ shows the title
+    ✓ displays the bikes (69ms)
+
   Contact page
     ✓ shows the main body
     ✓ shows the nav bar
-    ✓ shows the buttons (134ms)
-    ✓ shows the main image
-$
+    ✓ shows the buttons (77ms)
+    ✓ shows the main title
 
+  Rebike page
+    ✓ shows the main body
+    ✓ shows the nav bar
+    ✓ shows the buttons (47ms)
+    ✓ read more button redirects to about page (143ms)
+
+  Donate page
+    ✓ shows the main header
+    ✓ accepts donation and displays bikes in list (417ms)
+
+  Rebike page
+    ✓ shows the main body
+    ✓ shows the nav bar
+    ✓ shows the buttons (69ms)
+    ✓ read more button redirects to about page (137ms)
+
+
+  21 passing (17s)
+$
 ## Continuous Integration.
 
-Doesn't work.
+Build passes.
+
+Travis link: https://travis-ci.org/jeltec/BikeShop/
+
+Coverall link: https://coveralls.io/github/jeltec/BikeShop
+
+heroku link: https://dashboard.heroku.com/apps/rebikeshop
 
